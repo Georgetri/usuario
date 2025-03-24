@@ -1,6 +1,6 @@
 package com.gestaousuario.usuario.infrastructure.repository;
 
-import com.george.springbasic.infrastructure.entity.Endereco;
+import com.gestaousuario.usuario.infrastructure.entity.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
