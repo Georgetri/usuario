@@ -3,6 +3,7 @@ package com.gestaousuario.usuario.businnes;
 import com.gestaousuario.usuario.businnes.converter.UsuarioConverter;
 import com.gestaousuario.usuario.businnes.dto.UsuarioDTO;
 import com.gestaousuario.usuario.infrastructure.entity.Usuario;
+import com.gestaousuario.usuario.infrastructure.exceptions.ResourceNotFoundException;
 import com.gestaousuario.usuario.infrastructure.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,16 @@ public class UsuarioService {
         return usuarioConverter.paraUsuarioDTO(usuario);
      // return usuarioConverter.paraUsuarioDTO(usuarioRepository.save(usuario));
     }
+
+
+    public Usuario buscarUsuarioPorEmail(String email){
+        return usuarioRepository.findByEmail(email).orElseThrow(
+                () -> new ResourceNotFoundException("Email não encontrado "+email));
+    }
+
+    public void deletaUsuarioPorEmail(String email){
+        usuarioRepository.deleteByEmail(email);
+    }
+
 
 }
