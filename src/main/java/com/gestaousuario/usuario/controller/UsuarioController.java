@@ -1,10 +1,12 @@
 package com.gestaousuario.usuario.controller;
 
 
-import com.gestaousuario.usuario.businnes.UsuarioService;
+import com.gestaousuario.usuario.businnes.service.UsuarioService;
 import com.gestaousuario.usuario.businnes.dto.EnderecoDTO;
 import com.gestaousuario.usuario.businnes.dto.TelefoneDTO;
 import com.gestaousuario.usuario.businnes.dto.UsuarioDTO;
+import com.gestaousuario.usuario.businnes.service.ViaCepService;
+import com.gestaousuario.usuario.infrastructure.clients.ViaCepDTO;
 import com.gestaousuario.usuario.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+    private final ViaCepService viaCepService;
 
     @PostMapping
     public ResponseEntity<UsuarioDTO> salvaUsuario(@RequestBody UsuarioDTO usuarioDTO){
@@ -79,6 +82,11 @@ public class UsuarioController {
     public ResponseEntity<TelefoneDTO> cadastraTelefone(@RequestBody TelefoneDTO dto,
                                                         @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(usuarioService.cadastraTelefone(token, dto));
+    }
+
+    @GetMapping("/endereco/{cep}")
+    public ResponseEntity<ViaCepDTO> buscarDadosCep(@PathVariable("cep") String cep){
+        return ResponseEntity.ok(viaCepService.buscarDadosEndereco(cep));
     }
 
 }
