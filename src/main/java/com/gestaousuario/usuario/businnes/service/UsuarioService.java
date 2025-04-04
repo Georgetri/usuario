@@ -1,4 +1,4 @@
-package com.gestaousuario.usuario.businnes;
+package com.gestaousuario.usuario.businnes.service;
 
 import com.gestaousuario.usuario.businnes.converter.UsuarioConverter;
 import com.gestaousuario.usuario.businnes.dto.EnderecoDTO;
