@@ -1,13 +1,16 @@
 package com.gestaousuario.usuario.controller;
 
 
-import com.gestaousuario.usuario.businnes.service.UsuarioService;
 import com.gestaousuario.usuario.businnes.dto.EnderecoDTO;
 import com.gestaousuario.usuario.businnes.dto.TelefoneDTO;
 import com.gestaousuario.usuario.businnes.dto.UsuarioDTO;
+import com.gestaousuario.usuario.businnes.service.UsuarioService;
 import com.gestaousuario.usuario.businnes.service.ViaCepService;
 import com.gestaousuario.usuario.infrastructure.clients.ViaCepDTO;
 import com.gestaousuario.usuario.infrastructure.security.JwtUtil;
+import com.gestaousuario.usuario.infrastructure.security.SecurityConfig;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/usuario")
 @RequiredArgsConstructor
+@Tag(name="Tarefas", description = "Cadastra tarefas de usuario")
+@SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
